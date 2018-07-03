@@ -2,26 +2,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>后台框架</title>
+<title>菜单栏</title>
 <link rel="stylesheet" type="text/css" href="<?php echo apth_url('subject/bim/layer/theme/default/layer.css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo apth_url('subject/bim/css/bim-css.css');?>" />
 <script type="text/javascript" src="<?php echo apth_url('subject/bim/js/jquery.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo apth_url('subject/bim/layer/layer.js');?>"></script>
 <script type="text/javascript" src="<?php echo apth_url('subject/bim/js/logins.js');?>"></script>
 </head>
-<body style="height:100%;">
-<div class="admin_box">
-	<div class="adming_logo"></div>
-</div>
-<table class="adming_all">
-	<tr>
-		<td class="ta_left">
-			<iframe src="<?php echo apth_url('?act=menu');?>" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
-		</td>
-		<td class="ta_right">
-			<iframe src="<?php echo apth_url('?act=adminindex');?>" name="show_winds" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
-		</td>
-	</tr>
-</table>
+<body>
+<ul class="menu_list">
+	<li><a href="<?php echo apth_url('?act=getkey');?>" target="show_winds">获取KEY</a></li>
+	<li><a href="<?php echo apth_url('?act=geturl');?>" target="show_winds">绑带域名</a></li>
+	<li><a href="<?php echo apth_url('?act=getpay');?>" target="show_winds">添值服务</a></li>
+	<li><a href="<?php echo apth_url('?act=gethelp');?>" target="show_winds">帮助中心</a></li>
+</ul>
 </body>
 </html>
