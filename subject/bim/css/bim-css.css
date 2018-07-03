@@ -44,3 +44,19 @@ html{height:100%;}
     color:#00ff66;
 }
 .user_zh .tishiinfo{display:block;position:absolute;top:0;right:0;width:5.6rem;color:#770404;}
+/*后台框架*/
+.admin_box{
+	border:1px solid #0e0e0e;
+	background: #0e0e0e;
+    height:4rem;
+}
+.adming_logo{width:200px;height:45px;margin-top:0.55rem;margin-left:0.55rem;}
+.adming_all{border:1px solid red;width: 14rem;}
+
+
+
+
+
+
+
+

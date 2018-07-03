@@ -4,15 +4,18 @@
 <meta charset="UTF-8">
 <title>火天信添值服务</title>
 <link rel="stylesheet" type="text/css" href="<?php echo apth_url('subject/bim/css/bim-css.css');?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo apth_url('subject/bim/layer/theme/default/layer.css');?>" />
 <script type="text/javascript" src="<?php echo apth_url('subject/bim/js/jquery.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo apth_url('subject/bim/layer/layer.js');?>"></script>
+<script type="text/javascript" src="<?php echo apth_url('subject/bim/js/logins.js');?>"></script>
 </head>
 <body class="gradient">
 <div class="hhh_boxs">
 	<div class="hhh_boxsins">用户登录器</div>
 	<div class="user_loginbox">
-		<div class="user_zh first"><span>帐号：</span><input type="text" name="user" value="" class="inputs"/><span class="tishiinfo">*帐号不存*</span></div>
-		<div class="user_zh"><span>密码：</span><input type="password" name="pwd" value="" class="inputs"/><span class="tishiinfo">*密码错误*</span></div>
-		<div class="user_zh"> &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;<input type="button" value="登录" class="btn_login"/></div>
+		<div class="user_zh first"><span>帐号：</span><input type="text" name="user" value="" class="inputs"/><span class="tishiinfo"></span></div>
+		<div class="user_zh"><span>密码：</span><input type="password" name="pwd" value="" class="inputs"/><span class="tishiinfo"></span></div>
+		<div class="user_zh"> &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;<input type="button" value="登录" onclick="Logins();" class="btn_login"/></div>
 	</div>
 </div>
 </body>
