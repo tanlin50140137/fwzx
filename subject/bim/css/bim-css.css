@@ -17,7 +17,30 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {color: #aa
 table { border-collapse: collapse; border-spacing: 0; }
 
 img{
-	display: block;
 	max-width: 100%;
 	margin: 0 auto;
 }
+html{height:100%;}
+.gradient{
+	height:100%;
+    background: -webkit-linear-gradient(#a2d1f1, #03325d); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#a2d1f1, #03325d); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#a2d1f1, #03325d); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#a2d1f1, #03325d); /* 标准的语法 */
+}
+.hhh_boxs{border:1px solid #3f6e95;width:400px;height:250px;position:absolute;top:50%;left:50%;margin-top:-125px;margin-left:-200px;border-radius:10px;padding:10px;background:url(../images/l_dg.png) no-repeat;box-shadow: 0px 0px 2px 2px #abcdef inset;}
+.hhh_boxsins{height:4rem;line-height:4rem;text-align:center;font-size:1.2rem;color:#def0fb;}
+.user_loginbox{border-top:1px solid #0b3a65;}
+.user_zh{height:3rem;line-height:3rem;text-align:center;font-size:0.9rem;position:relative;left:0;}
+.user_zh span{color:#def0fb;}
+.inputs{padding:3px;border-radius:4px;border:none;width:10rem;outline:none;}
+.first{margin-top: 12px;}
+.btn_login{width:10.5rem;height:2rem;background:#1c69ab;border:none;border-radius:0.4rem;outline:none;cursor:pointer;color:aqua;}
+.btn_login:hover{
+	background:-webkit-linear-gradient(#1c27ab,#114c7d); /* Safari 5.1 - 6.0 */
+    background:-o-linear-gradient(#1c27ab,#114c7d); /* Opera 11.1 - 12.0 */
+    background:-moz-linear-gradient(#1c27ab,#114c7d); /* Firefox 3.6 - 15 */
+    background:linear-gradient(#1c27ab,#114c7d); /* 标准的语法 */
+    color:#00ff66;
+}
+.user_zh .tishiinfo{display:block;position:absolute;top:0;right:0;width:5.6rem;color:#770404;}
