@@ -3,8 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>获取KEY</title>
+<link rel="stylesheet" type="text/css" href="<?php echo apth_url('subject/bim/layer/theme/default/layer.css');?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo apth_url('subject/bim/css/bim-css.css');?>" />
+<script type="text/javascript" src="<?php echo apth_url('subject/bim/js/jquery.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo apth_url('subject/bim/layer/layer.js');?>"></script>
+<script type="text/javascript" src="<?php echo apth_url('subject/bim/js/logins.js');?>"></script>
 </head>
 <body>
-获取KEY
+<div class="key_box">
+	<h1><a href="<?php echo apth_url('?act=adminfrom');?>" target="_parent">&lt;&lt;返回首页</a> &nbsp; &nbsp; &nbsp; &nbsp; <input type="button" value="创建Key" class="cearter_key"/></h1>	
+</div>
+<div class="shengcheng">
+	<p>生成OPENID：<input type="text" name="OPENID" value="" class="openid_sls"/> <input type="button" value="随机" class="openid_btn"/></p>
+	<p>生成APPKEY：<input type="text" name="APPKEY" value="" class="openid_sls"/> <input type="button" value="随机" class="openid_btn"/></p>
+	<p> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp; <input type="button" value="点击创建" class="btn_cearter"/></p>
+</div>
+<table class="key_tablebox">
+		<tr>
+			<td>序号</td>
+			<td>OPENID</td>
+			<td>APPKEY</td>
+			<td>生成时间</td>
+			<td>操作</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>2018070316345469</td>
+			<td>sdgh5263598ikolpuyhn5360r1g5s8l</td>
+			<td>2018-07-03 17:16:30</td>
+			<td>删除</td>
+		</tr>
+</table>
 </body>
 </html>

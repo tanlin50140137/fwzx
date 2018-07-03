@@ -54,20 +54,31 @@ html{height:100%;}
 .adming_all{width:100%;height:100%;}
 .ta_left{width:12rem;background:#2b2a2a;}
 .ta_right{padding:10px;}
-.menu_list li{border-bottom:1px solid #383535;height:3rem;font-size: 0.9rem;text-align:center;line-height:3rem;}
+.menu_list li{border-bottom:1px solid #383535;height:3.8rem;font-size: 0.9rem;text-align:center;line-height:3.8rem;}
 .menu_list li a{color: #d6cbcb;display: block;}
 .menu_list li a:hover{color:#69b530;}
 
-.mobile{border:1px solid #ece7e7;width: 18rem;height: 10rem;float: left;margin-right: 0.5rem;border-radius: 4px;background: #ece7e7;}
-.mobile p{height: 4rem;line-height:4rem;margin:9px 5px 0 5px;}
+.mobile{border:1px solid #ece7e7;width: 18rem;height: 10rem;float: left;margin-right: 0.5rem;border-radius: 4px;background: #ece7e7;margin-top: 50px;margin-left: 50px;}
+.mobile b{font-weight:bold;}
+.mobile p{height: 2rem;line-height:2rem;margin:9px 5px 0 5px;}
 
+.shengcheng{margin-top:50px;}
+.shengcheng p{height:3rem;line-height:3rem;}
+.openid_sls{padding:3px;width: 20rem;border-radius: 0.4rem;border: 1px solid #e2d0d0;outline: none;}
+.openid_btn{border: 1px solid #3571cc;width:4rem;height:1.4rem;border-radius:0.5rem;background:#3571cc;color:#ede3d3;outline:none;cursor:pointer;}
+.openid_btn:hover{background:#86b2f5;color:#383535;}
+.btn_cearter{border: 1px solid #3571cc;width: 24.5rem;height: 2rem;background: #3571cc;color: aliceblue;border-radius: 0.5rem;outline: none;cursor:pointer;}
+.btn_cearter:hover{background:#86b2f5;color:#383535;}
 
-
-
-
-
-
-
+.key_box{border-bottom:1px solid #ded5d5;}
+.key_box h1{height:50px;line-height:50px;font-size:1rem;}
+.key_box h1 a{color:#4a4c4c;}
+.key_box h1 a:hover{text-decoration: underline;}
+.cearter_key{border: 1px solid #3571cc;width:5rem;height:2rem;background:#3571cc;border-radius:4px;outline:none;cursor:pointer;color:antiquewhite;}
+.cearter_key:hover{background:#86b2f5;color:#383535;}
+.key_tablebox{margin-top:50px;width:100%;}
+.key_tablebox tr{height:3.5rem;text-align:center;}
+.key_tablebox td{border:1px solid #ded5d5;}
 
 
 
