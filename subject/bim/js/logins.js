@@ -15,8 +15,7 @@ var relemail =/^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}$/;
 
 function Logins(){
 	var u = $("[name='users']").val();
-	var p = $("[name='pwd']").val();
-	
+	var p = $("[name='pwd']").val();	
 	if( u == '' )
 	{
 		$(".tishiinfo:eq(0)").text(strArr[0]);
@@ -28,10 +27,8 @@ function Logins(){
 		$(".tishiinfo:eq(1)").text(strArr[1]);
 		$("[name='pwd']").focus();
 		return false;
-	}
-	
-	//验证帐号密码
-	
+	}	
+	//验证帐号密码	
 	
 }
 $(function(){
@@ -48,14 +45,13 @@ $(function(){
 		}
 	});
 });
-
 function reset_s()
 {
 	var u = $("[name='users']").val();
 	var p = $("[name='pwd']").val();
 	var t = $("[name='tel']").val();
 	var e = $("[name='email']").val();
-	
+	var d = 'act=form_resets&u='+u+'&p='+p+'&t='+t+'&e='+e;
 	if( u == '' )
 	{
 		$(".tishiinfo:eq(0)").text(strArr[0]);
@@ -94,7 +90,9 @@ function reset_s()
 	}
 	
 	//验证帐号密码
-	
+	$.post('',{},function(){
+		
+	});
 }
 $(function(){
 	$("[name='tel']").blur(function(){
