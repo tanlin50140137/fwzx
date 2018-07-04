@@ -26,7 +26,18 @@ function adminfrom()
 	#公共文件内容
 	include 'subject/'.getThemeDir().'/common.php';
 	
+	if( !isset( $_SESSION['usersname'] ) || $_SESSION['usersname']==null )
+	{
+		header('location:'.apth_url(''));exit;
+	}	
 	$usersname = $_SESSION['usersname'];
+	$num = db()->select('*')->from(PRE.'admin')->where(array('users'=>$usersname))->get()->array_nums();
+	if( $num == 0 )
+	{
+		header('location:'.apth_url(''));exit;
+	}
+		
+	$row = db()->select('*')->from(PRE.'admin')->where(array('users'=>$usersname))->get()->array_row();
 	
 	require 'subject/'.getThemeDir().'/template/'.__FUNCTION__.'.html';
 }
@@ -148,6 +159,10 @@ function form_resets()
 	{
 		echo json_encode(array('error'=>'1',f=>3,'txt'=>'*邮箱不正确*'));exit;
 	}
+	#获取随机头像
+	$sql = 'select picname from '.PRE.'apack order by rand() limit 0,1';
+	$picrow = db()->query($sql)->array_row();
+	$data['pic'] = $picrow['picname']==''?'':$picrow['picname'];
 	$data['publitime'] = time();	
 	//注册
 	$int = db()->insert(PRE.'admin',$data);
@@ -191,9 +206,10 @@ function GetOpenId()
 #注销用户
 function log_on()
 {
-	#注销用户信息
-	
-	//............................
+	#注销用户信息	
+	session_start();
+	$_SESSION['usersname'] = null;
+	unset($_SESSION['usersname']);
 	
 	#返回用户登录
 	header("location:".apth_url(''));
