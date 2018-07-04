@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>后台框架</title>
+<title>火天信添值服务后台框架</title>
 <link rel="stylesheet" type="text/css" href="<?php echo apth_url('subject/bim/layer/theme/default/layer.css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo apth_url('subject/bim/css/bim-css.css');?>" />
 <script type="text/javascript" src="<?php echo apth_url('subject/bim/js/jquery.min.js');?>"></script>
@@ -11,7 +11,14 @@
 </head>
 <body style="height:100%;">
 <div class="admin_box">
-	<a href="<?php echo apth_url('?act=adminfrom');?>"><div class="adming_logo"></div></a>
+	<a href="<?php echo apth_url('?act=adminfrom');?>">
+	<div class="adming_logo"></div>
+	</a>
+	<ul class="right_allboxs">
+		<li class="pic_imgs"><img src="<?php echo apth_url('subject/bim/images/default.jpg');?>" alt="用户头像"/></li>
+		<li class="pic_imgs2">QQ小布</li>
+		<li class="pic_imgs2"><a href="<?php echo apth_url('?act=log_on');?>">注销</a></li>
+	</ul>
 </div>
 <table class="adming_all">
 	<tr>

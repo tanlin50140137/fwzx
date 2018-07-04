@@ -11,13 +11,34 @@
 </head>
 <body>
 <div class="key_box">
-	<h1><a href="<?php echo apth_url('?act=adminfrom');?>" target="_parent">&lt;&lt;返回首页</a> &nbsp; &nbsp; &nbsp; &nbsp; <input type="button" value="创建Key" class="cearter_key"/></h1>	
+	<h1><a href="<?php echo apth_url('?act=adminfrom');?>" target="_parent">&lt;&lt;返回首页</a> &nbsp; &nbsp; &nbsp; <input type="button" value="创建Key" class="cearter_key" onclick="cearter_key();"/></h1>	
 </div>
 <div class="shengcheng">
-	<p>生成OPENID：<input type="text" name="OPENID" value="" class="openid_sls"/> <input type="button" value="随机" class="openid_btn"/></p>
-	<p>生成APPKEY：<input type="text" name="APPKEY" value="" class="openid_sls"/> <input type="button" value="随机" class="openid_btn"/></p>
+	<p>生成OPENID：<input type="text" name="OPENID" value="" class="openid_sls"/> <input type="button" value="随机" class="openid_btn" onclick="cearter_openid();"/></p>
+	<p>生成APPKEY：<input type="text" name="APPKEY" value="" class="openid_sls"/> <input type="button" value="随机" class="openid_btn" onclick="cearter_appkey();"/></p>
 	<p> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp; <input type="button" value="点击创建" class="btn_cearter"/></p>
 </div>
+<script>
+function cearter_key(){
+	$(".shengcheng").show();
+	$.post('<?php echo apth_url("index.php");?>',{'act':'GetOpenId','flag':1},function(data){
+		$("[name='OPENID']").val(data);
+	});
+	$.post('<?php echo apth_url("index.php");?>',{'act':'GetOpenId','flag':2},function(data){
+		$("[name='APPKEY']").val(data);
+	});
+}
+function cearter_openid(){
+	$.post('<?php echo apth_url("index.php");?>',{'act':'GetOpenId','flag':1},function(data){
+		$("[name='OPENID']").val(data);
+	});
+}
+function cearter_appkey(){
+	$.post('<?php echo apth_url("index.php");?>',{'act':'GetOpenId','flag':2},function(data){
+		$("[name='APPKEY']").val(data);
+	});
+}
+</script>
 <table class="key_tablebox">
 		<tr>
 			<td>序号</td>

@@ -67,3 +67,29 @@ function gethelp()
 	
 	require 'subject/'.getThemeDir().'/template/'.__FUNCTION__.'.html';
 }
+###############################################################################################
+#获取key
+function GetOpenId()
+{
+	$f = $_POST['flag'];
+	switch ($f)
+	{
+		case 1:
+			$keys = date('YmdHis').mt_rand(100000,999999);
+		break;
+		case 2:
+			$keys = md5(uniqid('',microtime(true)));
+		break;
+	}
+	echo $keys;
+}
+#注销用户
+function log_on()
+{
+	#注销用户信息
+	
+	//............................
+	
+	#返回用户登录
+	header("location:".apth_url(''));
+}
