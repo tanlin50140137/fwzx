@@ -11,6 +11,14 @@ function index()
 	
 	require 'subject/'.getThemeDir().'/template/'.__FUNCTION__.'.html';
 }
+#注册
+function reset_u()
+{
+	#公共文件内容
+	include 'subject/'.getThemeDir().'/common.php';
+	
+	require 'subject/'.getThemeDir().'/template/'.__FUNCTION__.'.html';
+}
 #后台框架
 function adminfrom()
 {
