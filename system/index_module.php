@@ -22,8 +22,11 @@ function reset_u()
 #后台框架
 function adminfrom()
 {
+	session_start();
 	#公共文件内容
 	include 'subject/'.getThemeDir().'/common.php';
+	
+	$usersname = $_SESSION['usersname'];
 	
 	require 'subject/'.getThemeDir().'/template/'.__FUNCTION__.'.html';
 }
@@ -76,47 +79,80 @@ function gethelp()
 	require 'subject/'.getThemeDir().'/template/'.__FUNCTION__.'.html';
 }
 ###############################################################################################
+#用户登录
+function form_logins()
+{
+	session_start();
+	
+	$data['users'] = htmlspecialchars($_POST['u'],ENT_QUOTES);
+	if( $data['users'] == '' )
+	{
+		echo json_encode(array("error"=>1,f=>0,'txt'=>'*请输入帐号*'));exit;
+	}
+	$num = db()->select('*')->from(PRE.'admin')->where(array('users'=>$data['users']))->get()->array_nums();
+	if( $num == 0 )
+	{
+		echo json_encode(array("error"=>1,f=>0,'txt'=>'*帐号未注册*'));exit;
+	}
+	$data['pwd'] = mb_substr(md5(md5(base64_decode($_POST['p']))),0,10,'utf-8');
+	if( $data['pwd'] == '' )
+	{
+		echo json_encode(array("error"=>1,f=>1,'txt'=>'*请输入密码*'));exit;
+	}
+	#会员登录 
+	$int = db()->select('*')->from(PRE.'admin')->where(array('users'=>$data['users'],'pwd'=>$data['pwd']))->get()->array_nums();
+	if( $int )
+	{	
+		$_SESSION['usersname'] = $data['users'];
+		
+		echo json_encode(array('error'=>'0','txt'=>'登录成功'));
+	}
+	else
+	{
+		echo json_encode(array('error'=>'1','txt'=>'登录失败'));
+	}
+}
 #用户提交注册
 function form_resets()
 {
 	$data['users'] = htmlspecialchars($_POST['u'],ENT_QUOTES);
 	if( $data['users'] == '' )
 	{
-		echo json_encode(array("error"=>1,'txt'=>'*请输入帐号*'));exit;
+		echo json_encode(array("error"=>1,f=>0,'txt'=>'*请输入帐号*'));exit;
 	}
 	$num = db()->select('*')->from(PRE.'admin')->where(array('users'=>$data['users']))->get()->array_nums();
 	if( $num > 0 )
 	{#检测帐号
-		echo json_encode(array("error"=>1,'txt'=>'*帐号已存在*'));exit;
+		echo json_encode(array("error"=>1,f=>0,'txt'=>'*帐号已存在*'));exit;
 	}
 	$data['pwd'] = mb_substr(md5(md5(base64_decode($_POST['p']))),0,10,'utf-8');
 	if( $data['pwd'] == '' )
 	{
-		echo json_encode(array("error"=>1,'txt'=>'*请输入密码*'));exit;
+		echo json_encode(array("error"=>1,f=>1,'txt'=>'*请输入密码*'));exit;
 	}
 	$data['tel'] = $_POST['t'];
 	if( $data['tel'] == '' )
 	{
-		echo json_encode(array("error"=>1,'txt'=>'*请输入手机*'));exit;
+		echo json_encode(array("error"=>1,f=>2,'txt'=>'*请输入手机*'));exit;
 	}
 	if(!preg_match("/^0?(13|14|15|17|18)[0-9]{9}$/", $data['tel']) )
 	{
-		echo json_encode(array("error"=>"1","txt"=>"*手机号错误*"));exit;
+		echo json_encode(array("error"=>"1",f=>2,"txt"=>"*手机号错误*"));exit;
 	}
 	$data['email'] = $_POST['e'];
 	if( $data['email'] == '' )
 	{
-		echo json_encode(array("error"=>1,'txt'=>'*请输入邮箱*'));exit;
+		echo json_encode(array("error"=>1,f=>3,'txt'=>'*请输入邮箱*'));exit;
 	}
 	if( !preg_match("/^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}$/",$data['email']) )
 	{
-		echo json_encode(array('error'=>'1','txt'=>'*邮箱不正确*'));exit;
+		echo json_encode(array('error'=>'1',f=>3,'txt'=>'*邮箱不正确*'));exit;
 	}
 	$data['publitime'] = time();	
 	//注册
 	$int = db()->insert(PRE.'admin',$data);
 	if( $int )
-	{
+	{	
 		echo json_encode(array('error'=>'0','txt'=>'注册成功'));
 	}
 	else
@@ -134,7 +170,7 @@ function checked_selects()
 	}
 	else
 	{
-		echo json_encode(array("error"=>0,'txt'=>'*帐号可用*'));
+		echo json_encode(array("error"=>0,'txt'=>'*帐号未注册*'));
 	}
 }
 #获取key

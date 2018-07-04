@@ -12,16 +12,24 @@ var strArr = new Array();
 	
 var relphone =/^0?(13|14|15|17|18)[0-9]{9}$/;
 var relemail =/^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}$/;
+var flag_users_name=false,flag_txt='';
 
-function Logins(){
-	var u = $("[name='users']").val();
-	var p = $("[name='pwd']").val();	
+function Logins(m){
+	var u = $("[name='users1']").val();
+	var p = $("[name='pwd']").val();
+	var url = $(m).attr('set-url');
 	if( u == '' )
 	{
 		$(".tishiinfo:eq(0)").text(strArr[0]);
 		$("[name='users']").focus();
 		return false;
-	}	
+	}
+	if( flag_users_name )
+	{
+		$(".tishiinfo:eq(0)").text(flag_txt);
+		$("[name='users']").focus();
+		return false;
+	}
 	if( p == '' )
 	{
 		$(".tishiinfo:eq(1)").text(strArr[1]);
@@ -29,10 +37,43 @@ function Logins(){
 		return false;
 	}	
 	//验证帐号密码	
-	
+	$.post(url,{"act":"form_logins","u":u,"p":p},function(data){
+		var obj = eval("("+data+")");
+		if( obj.error == 0 )
+		{//注册成功
+			layer.msg(obj.txt,{time:2000},function(){
+				location.href = url+"?act=adminfrom";
+			});
+		}	
+		else
+		{//错误提示
+			$(".tishiinfo:eq("+obj.f+")").text(obj.txt);
+		}	
+	});
 }
-var flag_users_name=false,flag_txt='';
 $(function(){
+	$("[name='users1']").blur(function(){
+		var u = $("[name='users1']").val();
+		if( $("[name='users1']").val() != '' )
+		{	
+			$(".tishiinfo:eq(0)").text('');
+		}
+		var url = $(".btn_login").attr('set-url');
+		$.post(url,{"act":"checked_selects","u":u},function(data){
+			var obj = eval("("+data+")");
+			if( obj.error == 0 )
+			{//未注册
+				flag_users_name = true;
+				flag_txt = obj.txt;
+				$(".tishiinfo:eq(0)").text(obj.txt);
+			}
+			else
+			{
+				flag_users_name = false;
+				flag_txt = '';
+			}
+		});
+	});
 	$("[name='users']").blur(function(){
 		var u = $("[name='users']").val();
 		if( $("[name='users']").val() != '' )
@@ -50,6 +91,7 @@ $(function(){
 			}
 			else
 			{
+				flag_users_name = false;
 				flag_txt = '';
 			}
 		});
@@ -115,11 +157,13 @@ function reset_s(m)
 		var obj = eval("("+data+")");
 		if( obj.error == 0 )
 		{//注册成功
-			layer.msg(obj.txt);
+			layer.msg(obj.txt,{time:2000},function(){
+				location.href = url+"?act=index";
+			});
 		}	
 		else
 		{//错误提示
-			layer.msg(obj.txt);
+			$(".tishiinfo:eq("+obj.f+")").text(obj.txt);
 		}	
 	});
 }

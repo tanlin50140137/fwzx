@@ -1,5 +1,5 @@
 create database if not exists htx_baidu default character set 'utf8';
-
+#会员登录
 drop table if exists htx_admin;
 create table htx_admin(
 	id int(10) unsigned not null auto_increment primary key comment '主键',
@@ -20,4 +20,42 @@ create table htx_admin(
 	key key_publitime(publitime),
 	key key_state(state)
 )ENGINE=MyISAM DEFAULT CHARSET='utf8';
-
+#头像包
+drop table if exists htx_apack;
+create table htx_apack(
+	id int(10) unsigned not null auto_increment primary key comment '主键',
+	picapth varchar(255) not null default '' comment '头像地址',
+	picname varchar(255) not null default '' comment '头像图片名称',
+	picsize varchar(255) not null default '' comment '头像大小',
+	key key_picname(picname)	
+)ENGINE=MyISAM DEFAULT CHARSET='utf8';
+INSERT INTO htx_apack(picname) VALUES('default/533e4c700001c60f02200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/533e4c700001c60f02200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/533e4c1500010baf02200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/533e4d3d0001ed7802000200.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/533e4fc800012f3002000200.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/533e51840001ca2502000200.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/5333a0aa000121d702000200.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/5333a0f60001eaa802200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/5333a2b70001a5a802000200.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/5333a08f0001700202000200.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/5333a0600001f9ed02000200.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/5333a0780001a6e702200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/54584cb50001e5b302200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/54584d9f0001043b02200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/54584d080001566902200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/54584dad0001dd7802200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/54584ef20001deba02200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/54584f3100019e9702200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/545847d40001cbef02200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/545861d500015cc602200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/545861f00001be3402200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/545865da00012e6402200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/5458625e000166a002190220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/5458639d0001bed702200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/5458676e0001af7702200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/5458689e000115c602200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/545846580001fede02200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/545850200001359c02200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/545864190001966102200220.jpg');
+INSERT INTO htx_apack(picname) VALUES('default/545867340001101702200220.jpg');
