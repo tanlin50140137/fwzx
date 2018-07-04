@@ -31,12 +31,28 @@ function Logins(){
 	//验证帐号密码	
 	
 }
+var flag_users_name=false,flag_txt='';
 $(function(){
 	$("[name='users']").blur(function(){
+		var u = $("[name='users']").val();
 		if( $("[name='users']").val() != '' )
 		{	
 			$(".tishiinfo:eq(0)").text('');
 		}
+		var url = $(".btn_login").attr('set-url');
+		$.post(url,{"act":"checked_selects","u":u},function(data){
+			var obj = eval("("+data+")");
+			if( obj.error == 1 )
+			{//被占用
+				flag_users_name = true;
+				flag_txt = obj.txt;
+				$(".tishiinfo:eq(0)").text(obj.txt);
+			}
+			else
+			{
+				flag_txt = '';
+			}
+		});
 	});
 	$("[name='pwd']").blur(function(){
 		if( $("[name='pwd']").val() != '' )
@@ -45,19 +61,25 @@ $(function(){
 		}
 	});
 });
-function reset_s()
+function reset_s(m)
 {
 	var u = $("[name='users']").val();
 	var p = $("[name='pwd']").val();
 	var t = $("[name='tel']").val();
 	var e = $("[name='email']").val();
-	var d = 'act=form_resets&u='+u+'&p='+p+'&t='+t+'&e='+e;
+	var url = $(m).attr('set-url');
 	if( u == '' )
 	{
 		$(".tishiinfo:eq(0)").text(strArr[0]);
 		$("[name='users']").focus();
 		return false;
 	}	
+	if( flag_users_name == true )
+	{
+		$(".tishiinfo:eq(0)").text(flag_txt);
+		$("[name='users']").focus();
+		return false;
+	}
 	if( p == '' )
 	{
 		$(".tishiinfo:eq(1)").text(strArr[1]);
@@ -88,10 +110,17 @@ function reset_s()
 		$("[name='email']").focus();
 		return false;
 	}
-	
 	//验证帐号密码
-	$.post('<?php echo apth_url("?act=reset_send");?>',{},function(data){
-		console.log(data);
+	$.post(url,{"act":"form_resets","u":u,"p":p,"t":t,"e":e},function(data){
+		var obj = eval("("+data+")");
+		if( obj.error == 0 )
+		{//注册成功
+			layer.msg(obj.txt);
+		}	
+		else
+		{//错误提示
+			layer.msg(obj.txt);
+		}	
 	});
 }
 $(function(){

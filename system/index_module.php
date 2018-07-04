@@ -77,9 +77,65 @@ function gethelp()
 }
 ###############################################################################################
 #用户提交注册
-function reset_send()
+function form_resets()
 {
-	print_r($_POST);
+	$data['users'] = htmlspecialchars($_POST['u'],ENT_QUOTES);
+	if( $data['users'] == '' )
+	{
+		echo json_encode(array("error"=>1,'txt'=>'*请输入帐号*'));exit;
+	}
+	$num = db()->select('*')->from(PRE.'admin')->where(array('users'=>$data['users']))->get()->array_nums();
+	if( $num > 0 )
+	{#检测帐号
+		echo json_encode(array("error"=>1,'txt'=>'*帐号已存在*'));exit;
+	}
+	$data['pwd'] = mb_substr(md5(md5(base64_decode($_POST['p']))),0,10,'utf-8');
+	if( $data['pwd'] == '' )
+	{
+		echo json_encode(array("error"=>1,'txt'=>'*请输入密码*'));exit;
+	}
+	$data['tel'] = $_POST['t'];
+	if( $data['tel'] == '' )
+	{
+		echo json_encode(array("error"=>1,'txt'=>'*请输入手机*'));exit;
+	}
+	if(!preg_match("/^0?(13|14|15|17|18)[0-9]{9}$/", $data['tel']) )
+	{
+		echo json_encode(array("error"=>"1","txt"=>"*手机号错误*"));exit;
+	}
+	$data['email'] = $_POST['e'];
+	if( $data['email'] == '' )
+	{
+		echo json_encode(array("error"=>1,'txt'=>'*请输入邮箱*'));exit;
+	}
+	if( !preg_match("/^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}$/",$data['email']) )
+	{
+		echo json_encode(array('error'=>'1','txt'=>'*邮箱不正确*'));exit;
+	}
+	$data['publitime'] = time();	
+	//注册
+	$int = db()->insert(PRE.'admin',$data);
+	if( $int )
+	{
+		echo json_encode(array('error'=>'0','txt'=>'注册成功'));
+	}
+	else
+	{
+		echo json_encode(array('error'=>'1','txt'=>'注册失败'));
+	}
+}
+function checked_selects()
+{
+	$u = htmlspecialchars($_POST['u'],ENT_QUOTES);
+	$num = db()->select('*')->from(PRE.'admin')->where(array('users'=>$u))->get()->array_nums();
+	if( $num > 0 )
+	{#检测帐号
+		echo json_encode(array("error"=>1,'txt'=>'*帐号已存在*'));
+	}
+	else
+	{
+		echo json_encode(array("error"=>0,'txt'=>'*帐号可用*'));
+	}
 }
 #获取key
 function GetOpenId()
