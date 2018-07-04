@@ -90,8 +90,8 @@ function reset_s()
 	}
 	
 	//验证帐号密码
-	$.post('',{},function(){
-		
+	$.post('<?php echo apth_url("?act=reset_send");?>',{},function(data){
+		console.log(data);
 	});
 }
 $(function(){

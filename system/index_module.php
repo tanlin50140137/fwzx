@@ -76,6 +76,11 @@ function gethelp()
 	require 'subject/'.getThemeDir().'/template/'.__FUNCTION__.'.html';
 }
 ###############################################################################################
+#用户提交注册
+function reset_send()
+{
+	print_r($_POST);
+}
 #获取key
 function GetOpenId()
 {
